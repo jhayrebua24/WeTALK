@@ -32,11 +32,11 @@ const Messenger = () => {
   const token = localStorage.getItem('auth_token');
   const [showLoading, setShowLoading] = useState(false);
   const scrollToBottom = () => messageRef.current.scrollIntoView({ behavior: "smooth" });
-
+  const socketURL = 'wss://murmuring-brushlands-50099.herokuapp.com:5000';
   useEffect(() => {
     fetchMessages();
     if (isAutenticated()) {
-      socket.current = io(':5000', {
+      socket.current = io(socketURL,{
         transports: ['websocket'],
         query: {
           user: username,
